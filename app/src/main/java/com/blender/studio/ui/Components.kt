@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -116,7 +117,8 @@ fun ProgressDialog(progress: Float, label: String, onCancel: () -> Unit) {
 @Composable
 fun Panel(content: @Composable ColumnScope.() -> Unit) {
     Column(
-        Modifier.fillMaxWidth().background(BColors.Surface).padding(vertical = 10.dp),
+        Modifier.fillMaxWidth().background(BColors.Surface).heightIn(max = 300.dp)
+            .verticalScroll(androidx.compose.foundation.rememberScrollState()).padding(vertical = 10.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp), content = content,
     )
 }

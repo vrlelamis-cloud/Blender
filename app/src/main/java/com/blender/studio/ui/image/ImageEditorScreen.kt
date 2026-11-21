@@ -87,7 +87,7 @@ fun ImageEditorScreen(screen: Screen.Image, onBack: () -> Unit) {
                         item { SmallAction(Icons.Rounded.Flip, "Miroir", { history.commit(s.copy(flipH = !s.flipH)) }) }
                     }
                 }
-                "Ajuster" -> Column(Modifier.heightIn(max = 260.dp)) {
+                "Ajuster" -> Column {
                     LabeledSlider("Luminosité", s.brightness, -0.5f..0.5f, "%+d".format((s.brightness * 100).roundToInt()), { history.preview(s.copy(brightness = it)) }, { history.commit() })
                     LabeledSlider("Contraste", s.contrast, 0.5f..1.8f, "%d%%".format((s.contrast * 100).roundToInt()), { history.preview(s.copy(contrast = it)) }, { history.commit() })
                     LabeledSlider("Saturation", s.saturation, 0f..2f, "%d%%".format((s.saturation * 100).roundToInt()), { history.preview(s.copy(saturation = it)) }, { history.commit() })
@@ -119,7 +119,7 @@ fun ImageEditorScreen(screen: Screen.Image, onBack: () -> Unit) {
         scope.launch {
             val ok = withContext(Dispatchers.IO) {
                 runCatching {
-                    val full = ImageEngine.load(ctx, uri, 3000)
+                    val full = ImageEngine.load(ctx, uri, 2400)
                     val out = ImageEngine.render(full, history.current)
                     val (cf, ext, mime) = when (fmt) {
                         "PNG" -> Triple(Bitmap.CompressFormat.PNG, "png", "image/png")

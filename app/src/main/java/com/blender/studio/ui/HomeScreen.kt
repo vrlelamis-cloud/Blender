@@ -10,6 +10,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -82,17 +83,17 @@ fun HomeScreen(tick: Int, go: (Screen) -> Unit) {
         }
         item {
             Column(Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                ToolCard(Icons.Rounded.Movie, "Vidéo", "Timeline, découpe, vitesse, filtres, titres", listOf(BColors.Accent, Color(0xFFFF4D2E))) { startVideo(null) }
+                ToolCard(Icons.Rounded.Movie, "Vidéo", "Timeline, découpe, vitesse, filtres, titres", listOf(Color.White, Color(0xFFD9D9D9))) { startVideo(null) }
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    ToolCard(Icons.Rounded.Image, "Image", "Retouche, filtres, texte", listOf(BColors.Blue, Color(0xFF7A5CFF)), Modifier.weight(1f)) { startImage(null) }
-                    ToolCard(Icons.Rounded.GraphicEq, "Son", "Forme d'onde, voix, fondus", listOf(BColors.Green, Color(0xFF1FA7A0)), Modifier.weight(1f)) { startAudio() }
+                    ToolCard(Icons.Rounded.Image, "Image", "Retouche, filtres, texte", listOf(Color(0xFF1A1A1A), Color(0xFF0A0A0A)), Modifier.weight(1f)) { startImage(null) }
+                    ToolCard(Icons.Rounded.GraphicEq, "Son", "Forme d'onde, voix, fondus", listOf(Color(0xFF1A1A1A), Color(0xFF0A0A0A)), Modifier.weight(1f)) { startAudio() }
                 }
                 OutlinedButton(
                     onClick = { showRecorder = true }, Modifier.fillMaxWidth().height(52.dp), shape = RoundedCornerShape(16.dp),
                 ) { Icon(Icons.Rounded.Mic, null); Spacer(Modifier.width(8.dp)); Text("Enregistrer une voix") }
             }
         }
-        item {
+        item { Column {
             SectionTitle("Démarrage rapide")
             LazyRow(contentPadding = PaddingValues(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 item { QuickChip("Story 9:16") { startVideo("9:16") } }
@@ -101,7 +102,7 @@ fun HomeScreen(tick: Int, go: (Screen) -> Unit) {
                 item { QuickChip("Portrait N&B") { startImage("Noir & Blanc") } }
                 item { QuickChip("Look cinéma") { startImage("Cinéma") } }
             }
-        }
+        } }
         item { SectionTitle("Projets récents") }
         if (projects.isEmpty()) {
             item { Text("Vos projets sont sauvegardés automatiquement et apparaîtront ici.", color = BColors.TextDim, modifier = Modifier.padding(horizontal = 20.dp)) }
@@ -128,15 +129,17 @@ private fun SectionTitle(t: String) = Text(t, style = MaterialTheme.typography.t
 
 @Composable
 private fun ToolCard(icon: ImageVector, title: String, sub: String, colors: List<Color>, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    val fg = if (colors.first() == Color.White) Color.Black else Color.White
     Box(
         modifier.fillMaxWidth().heightIn(min = 112.dp).clip(RoundedCornerShape(22.dp))
-            .background(Brush.linearGradient(colors)).clickable(onClick = onClick).padding(18.dp)
+            .background(Brush.linearGradient(colors)).border(1.dp, BColors.Outline, RoundedCornerShape(22.dp))
+            .clickable(onClick = onClick).padding(18.dp)
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Icon(icon, null, tint = Color.White, modifier = Modifier.size(30.dp))
+            Icon(icon, null, tint = fg, modifier = Modifier.size(30.dp))
             Spacer(Modifier.height(4.dp))
-            Text(title, style = MaterialTheme.typography.titleLarge, color = Color.White)
-            Text(sub, style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.85f))
+            Text(title, style = MaterialTheme.typography.titleLarge, color = fg)
+            Text(sub, style = MaterialTheme.typography.bodySmall, color = fg.copy(alpha = 0.75f))
         }
     }
 }

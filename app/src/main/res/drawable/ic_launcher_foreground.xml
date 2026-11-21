@@ -5,11 +5,11 @@
         android:pathData="M54,30 a24,24 0 1,0 0.01,0 z">
         <aapt:attr name="android:strokeColor">
             <gradient android:type="linear" android:startX="30" android:startY="30" android:endX="78" android:endY="78">
-                <item android:offset="0" android:color="#FFFFB347" />
-                <item android:offset="1" android:color="#FFFF5A1F" />
+                <item android:offset="0" android:color="#FFFFFFFF" />
+                <item android:offset="1" android:color="#FFB0B0B0" />
             </gradient>
         </aapt:attr>
     </path>
     <path android:fillColor="#FFFFFFFF" android:pathData="M48,43 L48,65 Q48,67 50,66 L66,55 Q68,54 66,53 L50,42 Q48,41 48,43 Z" />
-    <path android:fillColor="#FFFF7A1A" android:pathData="M38,77 h4 v6 h-4z M46,74 h4 v12 h-4z M54,72 h4 v16 h-4z M62,74 h4 v12 h-4z M70,77 h4 v6 h-4z" />
+    <path android:fillColor="#FFFFFFFF" android:pathData="M38,77 h4 v6 h-4z M46,74 h4 v12 h-4z M54,72 h4 v16 h-4z M62,74 h4 v12 h-4z M70,77 h4 v6 h-4z" />
 </vector>

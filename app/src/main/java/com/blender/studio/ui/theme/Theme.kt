@@ -10,22 +10,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 object BColors {
-    val Bg = Color(0xFF0B0D12)
-    val Surface = Color(0xFF141821)
-    val SurfaceHi = Color(0xFF1E2431)
-    val Outline = Color(0xFF2B3345)
-    val Accent = Color(0xFFFF7A1A)
-    val AccentSoft = Color(0x33FF7A1A)
-    val Blue = Color(0xFF5B8CFF)
-    val Green = Color(0xFF3DDC97)
-    val Pink = Color(0xFFFF5C93)
+    val Bg = Color(0xFF000000)
+    val Surface = Color(0xFF0D0D0D)
+    val SurfaceHi = Color(0xFF1A1A1A)
+    val Outline = Color(0xFF3A3A3A)
+    val Accent = Color(0xFFFFFFFF)
+    val AccentSoft = Color(0x33FFFFFF)
+    val Blue = Color(0xFFFFFFFF)
+    val Green = Color(0xFFD9D9D9)
+    val Pink = Color(0xFFBDBDBD)
     val Text = Color(0xFFF2F4F8)
-    val TextDim = Color(0xFF9AA3B5)
-    val Danger = Color(0xFFFF5470)
+    val TextDim = Color(0xFFA6A6A6)
+    val Danger = Color(0xFFFFFFFF)
 }
 
 private val scheme = darkColorScheme(
-    primary = BColors.Accent, onPrimary = Color(0xFF1A0E00),
+    primary = BColors.Accent, onPrimary = Color(0xFF000000),
     secondary = BColors.Blue, background = BColors.Bg, onBackground = BColors.Text,
     surface = BColors.Surface, onSurface = BColors.Text,
     surfaceVariant = BColors.SurfaceHi, onSurfaceVariant = BColors.TextDim,

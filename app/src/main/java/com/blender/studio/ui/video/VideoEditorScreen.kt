@@ -100,7 +100,6 @@ private fun VideoEditor(projectId: String, initial: VideoState, onBack: () -> Un
         player.prepare(); player.playWhenReady = false
     }
     LaunchedEffect(s.speed) { player.playbackParameters = PlaybackParameters(s.speed) }
-    LaunchedEffect(s.brightness, s.contrast, s.saturation, s.rotation) { player.setVideoEffects(videoEffects(s, false)) }
     LaunchedEffect(player) { while (true) { pos = player.currentPosition; playing = player.isPlaying; delay(100) } }
 
     // Sauvegarde automatique
