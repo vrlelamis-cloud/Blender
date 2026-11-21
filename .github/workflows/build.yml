@@ -15,7 +15,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.9
-      - run: gradle assembleRelease --no-daemon
+      - name: Build
+        run: gradle assembleRelease --no-daemon --console=plain 2>&1 | tee build.log; exit ${PIPESTATUS[0]}
+      - name: Résumé des erreurs
+        if: failure()
+        run: |
+          grep -E "^e: |error:|What went wrong" -A2 build.log | head -9 | sed 's/^/::error::/' | tr -d '\r' | head -10 || true
       - uses: actions/upload-artifact@v4
         with:
           name: Blender-apk
